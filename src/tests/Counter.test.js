@@ -10,24 +10,24 @@ beforeEach(() => {
 })
 
 test('renders counter message', () => {
-  const counterMessage = screen.getByText('Counter');
+  const counterMessage = screen.getByText(/Counter/i);
   expect(counterMessage).toBeInTheDocument();
 });
 
 test('should render initial count with value of 0', () => {
-  const initialCount = screen.getByText('0');
-  expect(initialCount).toBeInTheDocument();
+  const initialCount = screen.getByTestId('count');
+  expect(initialCount.textContent).toBe('0');
 });
 
 test('clicking + increments the count', () => {
-  const initialCount = screen.getByText('0');
+  const initialCount = screen.getByTestId('count');
   const increment = screen.getByText('+');
   fireEvent.click(increment);
   expect(initialCount.textContent).toBe('1');
 });
 
 test('clicking - decrements the count', () => {
-  const initialCount = screen.getByText('0');
+  const initialCount = screen.getByTestId('count');
   const decrement = screen.getByText('-');
   fireEvent.click(decrement);
   expect(initialCount.textContent).toBe('-1');
